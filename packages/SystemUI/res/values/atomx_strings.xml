@@ -48,4 +48,11 @@
     <string name="global_action_reboot_fastboot">Fastboot</string>
     <string name="global_action_settings">Settings</string>
 
+
+    <!-- OnTheSpot: Action denial button text. [CHAR LIMIT=NONE] -->
+    <string name="on_the_spot_deny">NO THANKS</string>
+
+    <!-- OnTheSpot: Action confirmation button text. [CHAR LIMIT=NONE] -->
+    <string name="on_the_spot_confirm">OKAY</string>
+
 </resources>
