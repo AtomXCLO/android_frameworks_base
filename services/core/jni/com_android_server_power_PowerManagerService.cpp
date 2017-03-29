@@ -26,6 +26,8 @@
 #include <android/system/suspend/ISuspendControlService.h>
 #include <android/system/suspend/internal/ISuspendControlServiceInternal.h>
 #include <nativehelper/JNIHelp.h>
+#include <vendor/atomx/power/Feature.h>
+#include <vendor/atomx/power/IPowerFeature.h>
 #include "jni.h"
 
 #include <nativehelper/ScopedUtfChars.h>
@@ -58,6 +60,8 @@ using android::system::suspend::V1_0::WakeLockType;
 using IPowerV1_1 = android::hardware::power::V1_1::IPower;
 using IPowerV1_0 = android::hardware::power::V1_0::IPower;
 using IPowerAidl = android::hardware::power::IPower;
+using PowerFeature = vendor::atomx::power::Feature;
+using vendor::atomx::power::IPowerFeature;
 
 namespace android {
 
@@ -71,6 +75,7 @@ static struct {
 
 static jobject gPowerManagerServiceObj;
 static power::PowerHalController gPowerHalController;
+static sp<IPowerFeature> gPowerAtomXHalAidl_ = nullptr;
 static nsecs_t gLastEventTime[USER_ACTIVITY_EVENT_LAST + 1];
 
 // Throttling interval for user activity calls.
@@ -84,6 +89,24 @@ static bool checkAndClearExceptionFromCallback(JNIEnv* env, const char* methodNa
         LOGE_EX(env);
         env->ExceptionClear();
         return true;
+    }
+    return false;
+}
+
+// The caller must be holding gPowerHalMutex.
+static bool connectPowerFeatureHalLocked() {
+    static bool gPowerAtomXHalAidlExists = true;
+    if (gPowerAtomXHalAidlExists) {
+        if (!gPowerAtomXHalAidl_) {
+            gPowerAtomXHalAidl_ = waitForVintfService<IPowerFeature>();
+        }
+        if (gPowerAtomXHalAidl_) {
+            ALOGV("Successfully connected to PowerFeature HAL AIDL service.");
+            return true;
+        } else {
+            ALOGV("Couldn't load PowerFeature HAL AIDL service");
+            gPowerAtomXHalAidlExists = false;
+        }
     }
     return false;
 }
@@ -241,6 +264,14 @@ static jboolean nativeSetPowerMode(JNIEnv* /* env */, jclass /* clazz */, jint m
     return setPowerMode(static_cast<Mode>(mode), enabled);
 }
 
+static void nativeSetAtomXFeature(JNIEnv* /* env */, jclass /* clazz */, jint featureId,
+                                   jint data) {
+    // Try using AtomXs power hal. If it fails or isn't available, ignore
+    if (connectPowerFeatureHalLocked()) {
+        gPowerAtomXHalAidl_->setFeature(static_cast<PowerFeature>(featureId), static_cast<bool>(data));
+    }
+}
+
 static bool nativeForceSuspend(JNIEnv* /* env */, jclass /* clazz */) {
     bool retval = false;
     getSuspendControlInternal()->forceSuspend(&retval);
@@ -260,6 +291,7 @@ static const JNINativeMethod gPowerManagerServiceMethods[] = {
         {"nativeSetAutoSuspend", "(Z)V", (void*)nativeSetAutoSuspend},
         {"nativeSetPowerBoost", "(II)V", (void*)nativeSetPowerBoost},
         {"nativeSetPowerMode", "(IZ)Z", (void*)nativeSetPowerMode},
+        {"nativeSetAtomXFeature", "(II)V", (void*)nativeSetAtomXFeature},
 };
 
 #define FIND_CLASS(var, className) \
