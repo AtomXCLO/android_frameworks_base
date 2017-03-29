@@ -38,6 +38,10 @@ import java.util.Map;
 @TestApi
 public class AmbientDisplayConfiguration {
     private static final String TAG = "AmbientDisplayConfig";
+
+    /** {@hide} */
+    public static final String DOZE_NO_PROXIMITY_CHECK = "NoProximityCheck";
+
     private final Context mContext;
     private final boolean mAlwaysOnByDefault;
 
