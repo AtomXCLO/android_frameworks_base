@@ -5461,7 +5461,13 @@ public final class Settings {
          * @hide
          */
         public static final String NETWORK_TRAFFIC_REFRESH_INTERVAL = "network_traffic_refresh_interval";
-        
+
+        /**
+         * Whether to display 4G icon instead LTE
+         * @hide
+         */
+        public static final String SHOW_FOURG_ICON = "show_fourg_icon";
+
         /**
          * Whether to show the battery info on the lockscreen while charging
          * @hide
