@@ -5490,6 +5490,13 @@ public final class Settings {
         public static final String GAMESPACE_SUPPRESS_FULLSCREEN_INTENT = "gamespace_suppress_fullscreen_intent";
 
         /**
+         * Double tap on lockscreen to sleep
+         * @hide
+         */
+        public static final String DOUBLE_TAP_SLEEP_LOCKSCREEN =
+                "double_tap_sleep_lockscreen";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
@@ -5643,6 +5650,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(GESTURE_ONE_FINGER_SWIPE_DOWN);
             PRIVATE_SETTINGS.add(GESTURE_ONE_FINGER_SWIPE_LEFT);
             PRIVATE_SETTINGS.add(LOCKSCREEN_BATTERY_INFO);
+            PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_LOCKSCREEN);
         }
 
         /**
