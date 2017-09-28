@@ -26,7 +26,7 @@ import android.service.quicksettings.Tile;
 import android.widget.Toast;
 
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
-import com.android.internal.util.cherish.CherishUtils;
+import com.android.internal.util.citric.CitricUtils;
 import com.android.systemui.Dependency;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.plugins.qs.QSTile.BooleanState;
@@ -74,21 +74,21 @@ public class SoundSearchTile extends QSTileImpl<BooleanState> {
     public void handleClick(@Nullable View view) {
         mHost.collapsePanels();
         // Shazam
-        if (CherishUtils.isPackageInstalled(mContext, "com.shazam.android")
-                    || CherishUtils.isPackageInstalled(mContext, "com.shazam.encore.android")) {
+        if (CitricUtils.isPackageInstalled(mContext, "com.shazam.android")
+                    || CitricUtils.isPackageInstalled(mContext, "com.shazam.encore.android")) {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             intent.setAction("com.shazam.android.intent.actions.START_TAGGING");
             mContext.startActivity(intent);
         // Soundhound
-        } else if (CherishUtils.isPackageInstalled(mContext, "com.melodis.midomiMusicIdentifier.freemium")
-                    || CherishUtils.isPackageInstalled(mContext, "com.melodis.midomiMusicIdentifier")) {
+        } else if (CitricUtils.isPackageInstalled(mContext, "com.melodis.midomiMusicIdentifier.freemium")
+                    || CitricUtils.isPackageInstalled(mContext, "com.melodis.midomiMusicIdentifier")) {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             intent.setAction("com.soundhound.android.ID_NOW_EXTERNAL");
             mContext.startActivity(intent);
         // Google Search Music
-        } else if (CherishUtils.isPackageInstalled(mContext, "com.google.android.googlequicksearchbox")) {
+        } else if (CitricUtils.isPackageInstalled(mContext, "com.google.android.googlequicksearchbox")) {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             intent.setAction("com.google.android.googlequicksearchbox.MUSIC_SEARCH");
