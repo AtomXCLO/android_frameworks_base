@@ -15,6 +15,10 @@
     <!-- For dynamic default font styles -->
     <java-symbol type="string" name="config_bodyFontFamily" />
 
+    <!-- Device key handlers -->
+    <java-symbol type="array" name="config_deviceKeyHandlerLibs" />
+    <java-symbol type="array" name="config_deviceKeyHandlerClasses" />
+
     <!-- Gestures Settings -->
     <java-symbol type="integer" name="config_doubleTapKeyCode" />
     <java-symbol type="integer" name="config_singleTapKeyCode" />
