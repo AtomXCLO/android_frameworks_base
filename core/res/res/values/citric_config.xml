@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2021 AOSP-Krypton Project
+     Copyright (C) 2021 CitricOS
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -21,4 +22,11 @@
      <!-- Names of the key handler classes -->
      <string-array name="config_deviceKeyHandlerClasses" translatable="false" />
 
+    <!-- Global Actions prefs list -->
+    <string-array translatable="false" name="custom_config_globalActionsList">
+        <item>emergency</item>
+        <item>power</item>
+        <item>restart</item>
+        <item>logout</item>
+    </string-array>
 </resources>
