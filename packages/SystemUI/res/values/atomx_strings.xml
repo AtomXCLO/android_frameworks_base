@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+** Copyright (C) 2022 The AtomX Project
+**
+** SPDX-License-Identifier: Apache-2.0
+*/
+-->
+<resources>
+
+    <!-- Caffeine tile -->
+    <string name="quick_settings_caffeine_label">Caffeine</string>
+    <string name="accessibility_quick_settings_caffeine_off">Caffeine off</string>
+    <string name="accessibility_quick_settings_caffeine_on">Caffeine on</string>
+
+</resources>
