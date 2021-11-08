@@ -1,0 +1,4 @@
+
+files:
+  - source: /core/res/res/values/citric_strings.xml
+    translation: /%original_path%-%android_code%/%original_file_name%
