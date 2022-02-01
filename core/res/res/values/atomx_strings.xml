@@ -6,7 +6,7 @@
 ** SPDX-License-Identifier: Apache-2.0
 */
 -->
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <!-- Alert slider proc nodes paths. -->
     <string name="alert_slider_state_path"></string>
@@ -28,5 +28,8 @@
 
     <!-- Face unlock -->
     <string name="face_unlock_disabled_idle">Face unlock disabled due to inactivity</string>
+
+    <!-- App lock -->
+    <string name="unlock_application">Unlock <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
 
 </resources>
