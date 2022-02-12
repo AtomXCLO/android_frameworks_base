@@ -31,4 +31,7 @@
     <!-- WiFi standard numbering on statusbar -->
     <string name="status_bar_wifi_standard">Wi-Fi standard number</string>
 
+    <!-- Face Unlock -->
+    <string name="face_unlock_recognizing">Recognizing face...</string>
+
 </resources>
