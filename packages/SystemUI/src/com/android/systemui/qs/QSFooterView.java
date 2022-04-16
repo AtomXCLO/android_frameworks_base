@@ -98,8 +98,6 @@ public class QSFooterView extends FrameLayout {
         setUsageText();
     }
 
-    private void setBuildText() {
-        if (mBuildText == null) return;
     private void setUsageText() {
         if (mUsageText == null) return;
         DataUsageController.DataUsageInfo info;
